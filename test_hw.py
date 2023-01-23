@@ -2,6 +2,7 @@ import os
 import tempfile
 import shutil
 import filecmp
+import difflib
 import ex5
 
 class Playground():
@@ -17,6 +18,14 @@ class Playground():
     def __exit__(self, *_):
         shutil.rmtree(self.temp_dir)
 
+def format_error_message(f1, f2):
+    ret = f"'{f1}' and '{f2}' do not match:\n" 
+    with open(f1, "r") as f1:
+        text1 = f1.readlines()
+    with open(f2, "r") as f2:
+        text2 = f2.readlines()
+    diff = "\n".join(difflib.unified_diff(text1, text2))
+    return ret + diff
 
 def test_vigenere_cipher():
     vigenere = ex5.VigenereCipher([3])
@@ -42,5 +51,5 @@ def test_process_directory():
                 assert os.path.isfile(expected_file), f"your code created an unexpected file: '{expected_file}'" 
                 output = os.path.join(pg.name, file)
                 assert os.path.isfile(output), f"your code did not create the following file: '{file}'" 
-                assert filecmp.cmp(output, expected_file), f"'{expected_file}' and '{output}' do not match"
+                assert filecmp.cmp(output, expected_file), format_error_message(expected_file, output)
 
