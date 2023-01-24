@@ -42,6 +42,8 @@ def test_vigenere_from_str():
 
 def test_process_directory():
     for expected, output in zip(os.listdir("tests/expected"), os.listdir("tests/output")):
+        if expected.startswith("."):
+            continue
         with Playground(os.path.join("tests/output", output)) as pg:
            ex5.processDirectory(pg.name)
            expected = os.path.join("tests/expected", expected)
