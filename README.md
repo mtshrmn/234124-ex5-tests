@@ -9,3 +9,17 @@ $ python -m pytest
 
 ### Disclaimer
 Those tests were randomly generated
+
+
+### Troubleshooting
+
+- Pytest isn't installed
+```sh
+$ python -m pytest
+/usr/bin/python: No module named pytest
+
+```
+Install pytest using pip (**make sure pip is installed**)
+```sh
+$ python -m pip install pytest
+```
