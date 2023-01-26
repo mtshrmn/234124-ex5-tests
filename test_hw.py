@@ -4,6 +4,7 @@ import shutil
 import filecmp
 import difflib
 import ex5
+from distutils.dir_util import copy_tree
 
 class Playground():
     def __init__(self, path):
@@ -12,7 +13,7 @@ class Playground():
     def __enter__(self):
         temp_dir = tempfile.TemporaryDirectory()
         self.temp_dir = temp_dir.name
-        shutil.copytree(self.path, self.temp_dir, dirs_exist_ok=True)
+        copy_tree(self.path, self.temp_dir)
         return temp_dir
 
     def __exit__(self, *_):
