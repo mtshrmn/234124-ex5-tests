@@ -7,6 +7,15 @@ $ cp /path/to/ex5.py .
 $ python -m pytest
 ```
 
+## Running the tests on csl3
+
+```sh
+$ git clone https://github.com/mtshrmn/234124-ex5-tests ex5test
+$ cd ex5test
+$ sh ./install_pytest.sh
+$ cp /path/to/ex5.py .
+$ python3 -m pytest
+```
 ### Disclaimer
 Those tests were randomly generated
 
